@@ -1,19 +1,17 @@
 <?php
 
-namespace Traimmu\MfCloud\Invoice\Models;
+namespace Grkztd\MfCloud\Models;
 
-use Traimmu\MfCloud\Invoice\Models\Base;
-use Traimmu\MfCloud\Invoice\Models\Department;
+use Grkztd\MfCloud\Models\Base;
+use Grkztd\MfCloud\Models\Department;
 
-class Partner extends Base
-{
+class Partner extends Base{
     protected $fields = [
         'id', 'code', 'name', 'name_kana', 'name_suffix', 'memo', 'departments',
         'created_at', 'updated_at'
     ];
 
-    public function departments()
-    {
+    public function departments(){
         return collect($this['departments'])->map(function ($attributes) {
             return new Department($attributes);
         });

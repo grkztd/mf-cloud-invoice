@@ -1,12 +1,11 @@
 <?php
 
-namespace Traimmu\MfCloud\Invoice\Models;
+namespace Grkztd\MfCloud\Models;
 
-use Traimmu\MfCloud\Invoice\Api\Office as Api;
-use Traimmu\MfCloud\Invoice\Models\Base;
+use Grkztd\MfCloud\Api\Office as Api;
+use Grkztd\MfCloud\Models\Base;
 
-class Billing extends Base
-{
+class Billing extends Base{
     protected $fields = [
         'id', 'pdf_url', 'user_id', 'partner_id', 'department_id', 'partner_name',
         'partner_name_suffix', 'partner_detail', 'member_id', 'member_name',

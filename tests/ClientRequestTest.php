@@ -4,9 +4,9 @@ namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Client as Guzzle;
-use Traimmu\MfCloud\Invoice\Client;
-use Traimmu\MfCloud\Invoice\Models\Office;
-use Traimmu\MfCloud\Invoice\Api\Item;
+use Grkztd\MfCloud\Invoice\Client;
+use Grkztd\MfCloud\Invoice\Models\Office;
+use Grkztd\MfCloud\Invoice\Api\Item;
 
 final class ClientRequestTest extends TestCase
 {

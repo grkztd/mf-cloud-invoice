@@ -3,10 +3,10 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use Traimmu\MfCloud\Invoice\Client;
-use Traimmu\MfCloud\Invoice\Api\Item;
-use Traimmu\MfCloud\Invoice\Api\Billing;
-use Traimmu\MfCloud\Invoice\Api\Partner;
+use Grkztd\MfCloud\Invoice\Client;
+use Grkztd\MfCloud\Invoice\Api\Item;
+use Grkztd\MfCloud\Invoice\Api\Billing;
+use Grkztd\MfCloud\Invoice\Api\Partner;
 
 final class ClientTest extends TestCase
 {

@@ -1,12 +1,12 @@
 {
-    "name": "traimmu/mf-cloud-invoice",
+    "name": "grkztd/mf-cloud-invoice",
     "description": "MFCloud Invoice API wrapper",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "gosho-kazuya",
-            "email": "ketsume0211@gmail.com"
+            "name": "todoroki-kazumi",
+            "email": "cocacola5959@gmail.com"
         }
     ],
     "minimum-stability": "stable",
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Traimmu\\MfCloud\\Invoice\\": "src/Invoice"
+            "Grkztd\\MfCloud\\": "src"
         }
     },
     "autoload-dev": {

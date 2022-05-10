@@ -1,8 +1,8 @@
 <?php
 
-namespace Traimmu\MfCloud\Invoice\Models;
+namespace Grkztd\MfCloud\Models;
 
-use Traimmu\MfCloud\Invoice\Models\Base;
+use Grkztd\MfCloud\Models\Base;
 
 class Office extends Base
 {
@@ -10,8 +10,7 @@ class Office extends Base
         'name', 'zip', 'prefecture', 'address1', 'address2', 'tel', 'fax',
     ];
 
-    public function update(array $params)
-    {
+    public function update(array $params){
         $this->attributes = $this->api->update('', $params);
 
         return $this;

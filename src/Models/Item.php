@@ -1,8 +1,8 @@
 <?php
 
-namespace Traimmu\MfCloud\Invoice\Models;
+namespace Grkztd\MfCloud\Models;
 
-use Traimmu\MfCloud\Invoice\Models\Base;
+use Grkztd\MfCloud\Models\Base;
 
 class Item extends Base
 {

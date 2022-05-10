@@ -1,12 +1,11 @@
 <?php
 
-namespace Traimmu\MfCloud\Invoice\Api;
+namespace Grkztd\MfCloud\Api;
 
-use Traimmu\MfCloud\Invoice\Api\Base;
-use Traimmu\MfCloud\Invoice\Models\Office as Model;
+use Grkztd\MfCloud\Api\Base;
+use Grkztd\MfCloud\Models\Office as Model;
 
-class Office extends Base
-{
+class Office extends Base{
     protected $path = 'office';
 
     protected $model = Model::class;
@@ -15,8 +14,7 @@ class Office extends Base
 
     protected $allowedMethods = ['first', 'update'];
 
-    public function first() : Model
-    {
+    public function first() : Model{
         return new Model($this->client->get($this->path), $this);
     }
 

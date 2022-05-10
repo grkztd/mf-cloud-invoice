@@ -1,16 +1,16 @@
 <?php
 
-namespace Traimmu\MfCloud\Invoice;
+namespace Grkztd\MfCloud;
 
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Client as Guzzle;
-use Traimmu\MfCloud\Invoice\Api\Office;
-use Traimmu\MfCloud\Invoice\Api\Partner;
-use Traimmu\MfCloud\Invoice\Api\Item;
-use Traimmu\MfCloud\Invoice\Api\Billing;
+use Grkztd\MfCloud\Api\Office;
+use Grkztd\MfCloud\Api\Partner;
+use Grkztd\MfCloud\Api\Item;
+use Grkztd\MfCloud\Api\Billing;
+use Grkztd\MfCloud\Api\Quote;
 
-class Client
-{
+class Client{
 
     const BASE_URL = 'https://invoice.moneyforward.com/api';
 
@@ -25,13 +25,9 @@ class Client
     public $guzzle;
 
     /**
-     * Create a new Traimmu\MfCloud\Invoice client.
+     * Create a new Grkztd\MfCloud\Invoice client.
      */
-    public function __construct(
-        string $accessToken = '',
-        Guzzle $guzzle = null,
-        string $apiVersion = 'v1'
-    ) {
+    public function __construct(string $accessToken = '', Guzzle $guzzle = null, string $apiVersion = 'v2'){
         $this->setAccessToken($accessToken);
 
         if (is_null($guzzle)) {
@@ -43,48 +39,43 @@ class Client
         $this->apiVersion = $apiVersion;
     }
 
-    public function office()
-    {
+    public function office(){
         return (new Office($this))->first();
     }
 
-    public function items()
-    {
+    public function items(){
         return new Item($this);
     }
 
-    public function partners()
-    {
+    public function quotes(){
+        return new Quote($this);
+    }
+
+    public function partners(){
         return new Partner($this);
     }
 
-    public function billings()
-    {
+    public function billings(){
         return new Billing($this);
     }
 
-    public function get(string $path, array $params = []) : array
-    {
+    public function get(string $path, array $params = []) : array{
         return $this->request('GET', $path, $params);
     }
 
-    public function post(string $path, array $params = []) : array
-    {
+    public function post(string $path, array $params = []) : array{
         return $this->request('POST', $path, $params);
     }
 
-    public function put(string $path, array $params = []) : array
-    {
+    public function put(string $path, array $params = []) : array{
         return $this->request('PUT', $path, $params);
     }
 
-    public function delete(string $path) : array
-    {
+    public function delete(string $path) : array{
         return $this->request('DELETE', $path);
     }
 
-    protected function request(string $method, string $path, array $params = []) : array
-    {
+    protected function request(string $method, string $path, array $params = []) : array{
         $body = $this->guzzle->request(
             $method,
             $this->buildUrl($path),
@@ -96,13 +87,11 @@ class Client
         return json_decode((string)$body, true);
     }
 
-    protected function buildUrl($path) : string
-    {
+    protected function buildUrl($path) : string{
         return implode('/', [static::BASE_URL, $this->apiVersion, $path]);
     }
 
-    public function setAccessToken(string $token)
-    {
+    public function setAccessToken(string $token){
         $this->accessToken = $token;
         return $this;
     }
@@ -115,8 +104,7 @@ class Client
         ];
     }
 
-    public function getAccessToken()
-    {
+    public function getAccessToken(){
         return $this->accessToken;
     }
 }
