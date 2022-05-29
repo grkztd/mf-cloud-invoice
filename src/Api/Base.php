@@ -10,7 +10,7 @@ class Base{
     protected $client;
     public $included;
     public $options = [
-        'per_page' => 50,
+        'query' => 'per_page=50',
     ];
 
     /*
@@ -46,10 +46,25 @@ class Base{
      * Get all of the models from the repository.
      */
     public function all($params = []){
-        if($params === []){
-            $options = array_merge($this->options, $params);
-        }
+        $options = array_merge($this->options, $params);
         $res = $this->client->get($this->path, $options);
+        if(isset($res['included'])){
+            $this->included = collect($res['included'])->mapWithKeys(function($item){
+                return [$item['id'] => $item];
+            });
+        }
+        $collect = collect($res['data'])->map(function ($attributes) {
+            return new $this->model($attributes, $this);
+        });
+        return $collect;
+    }
+
+    /*
+     * Get all of the models from the repository.
+     */
+    public function search($params = []){
+        $options = array_merge($this->options, $params);
+        $res = $this->client->get($this->path.'/search', $options);
         if(isset($res['included'])){
             $this->included = collect($res['included'])->mapWithKeys(function($item){
                 return [$item['id'] => $item];
@@ -65,8 +80,13 @@ class Base{
      * Save a new model and return the instance.
      */
     public function create(array $params = []){
-        $response = $this->client->post($this->path, $this->buildBody($params));
-        return new $this->model($response, $this);
+        $res = $this->client->post($this->path, $this->buildBody($params));
+        if(isset($res['included'])){
+            $this->included = collect($res['included'])->mapWithKeys(function($item){
+                return [$item['id'] => $item];
+            });
+        }
+        return new $this->model($res['data'], $this);
     }
 
     /*

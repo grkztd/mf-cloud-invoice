@@ -14,8 +14,7 @@ class ServiceProvider extends BaseProvider{
      * @return void
      */
     public function boot(){
-        Socialite::extend(
-            'mf-invoice',
+        Socialite::extend('mf-invoice',
             function ($app) {
                 return Socialite::buildProvider(MoneyForwardProvider::class, config('services.mf-invoice'));
             }
