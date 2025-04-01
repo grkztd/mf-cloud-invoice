@@ -15,7 +15,7 @@ This library is inspired by [moneyforward/mf_cloud-invoice-ruby](https://github.
 # Installation
 
 ```
-composer require traimmu/mf-cloud-invoice
+composer require grkztd/mf-cloud-invoice
 ```
 
 # Usage
