@@ -12,6 +12,11 @@
 
 This library is inspired by [moneyforward/mf_cloud-invoice-ruby](https://github.com/moneyforward/mf_cloud-invoice-ruby)
 
+# ready
+```
+composer config repositories.grkztd/mf-cloud-invoice github https://github.com/grkztd/mf-cloud-invoice
+```
+
 # Installation
 
 ```
