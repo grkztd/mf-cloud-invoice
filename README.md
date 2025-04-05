@@ -23,6 +23,44 @@ composer config repositories.grkztd/mf-cloud-invoice github https://github.com/g
 composer require grkztd/mf-cloud-invoice
 ```
 
+# MF側
+
+## アプリの作成
+
+scope
+```
+mfc/admin/office.read
+mfc/invoice/data.read
+```
+## ブラウザで認可エンドポイントにアクセス(認可コードを使ってアクセストークンを取得) 
+```
+https://api.biz.moneyforward.com/authorize?
+	response_type=code&
+	client_id=${ClientID}&
+	scope=mfc/invoice/data.read&
+	redirect_uri=http://localhost:12345/callback
+```
+```
+https://api.biz.moneyforward.com/authorize?response_type=code&client_id=115551763027692&scope=mfc/invoice/data.read&redirect_uri=http://127.0.0.1:8082/oauth/callback
+```
+```
+array:5 [▼ // routes/web.php:56
+  "access_token" => "H6bOL_Q1PP6nNbk4-RUv9kJI638tkPT-DI0ZHb0ubyE"
+  "refresh_token" => "W9nc9zKu1WnBaAve5PQ2wWHOb4eUNg9F3PIC04r2R9Q"
+  "scope" => "mfc/invoice/data.read"
+  "token_type" => "Bearer"
+  "expires_in" => 3600
+]
+```
+※expires_inは秒？
+## ブラウザで認可エンドポイントにアクセス(リフレッシュトークンを利用してアクセストークンを再発行する) 
+```
+https://api.biz.moneyforward.com/authorize?
+	response_type=code&
+	client_id=${ClientID}&
+	scope=mfc/invoice/data.read&
+	redirect_uri=http://localhost:12345/callback
+```
 # Usage
 
 ## Build client

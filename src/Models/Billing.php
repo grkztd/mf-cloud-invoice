@@ -1,11 +1,9 @@
 <?php
 
+declare(strict_types=1);
 namespace Grkztd\MfCloud\Models;
 
-use Grkztd\MfCloud\Api\Office as Api;
-use Grkztd\MfCloud\Models\Base;
-
-class Billing extends Base{
+class Billing extends Base {
     protected $fields = [
         'id', 'pdf_url', 'user_id', 'partner_id', 'department_id', 'partner_name',
         'partner_name_suffix', 'partner_detail', 'member_id', 'member_name',
@@ -15,4 +13,5 @@ class Billing extends Base{
         'note', 'document_name', 'tags',
         'status'
     ];
+    // protected $relationFields = [];
 }
